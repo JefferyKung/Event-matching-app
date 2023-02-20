@@ -41,7 +41,7 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
         location: ""});
       closeModal();
     } else {
-      const create = await user.functions.createEvent(
+      const create = user.functions.createEvent(
         value.name,
         value.event,
         value.date,

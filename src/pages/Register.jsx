@@ -23,6 +23,8 @@ function Register() {
     e.preventDefault();
     setIsSubmitting(true);
     setMsg("");
+    
+    await user
 
     const emailfoundData = await user.functions.getfoundEmailData(resetEmail);
     console.log(emailfoundData)
