@@ -5,6 +5,7 @@ import { app, user, collectionEvent } from "../utils/mongo.client";
 import UserIcon from "../assets/svg/UserIcon";
 import Modal from '../components/Modal'
 import { Link, useNavigate, useLocation } from "react-router-dom";
+
  
 
 function App() {
@@ -17,10 +18,13 @@ function App() {
   const [eventValue, setEventValue] = useState();
   const [editingId, setEditingId] = useState();
   const [isFiltered, setIsFilter]= useState(false);
+
   const {state} = useLocation();
-  const {usern} = state;
-  const loggedInUserName = usern.emailfoundData.name
+  const {usern , userg} = state;
+  const loggedInUserName =  userg && userg.userg.name  || usern && usern.emailfoundData.name;
   const navigate = useNavigate();
+
+ 
 
 
   useEffect(() => {
@@ -102,7 +106,7 @@ function App() {
         </div>
       </header>
       <div className="md:grid md:grid-cols-2">
-      <section className="mt-10 flex justify-center px-6">
+      <section className="mt-10 flex justify-center px-6 ">
           
           <ul className="w-80%">
             <h1 className="text-4xl pb-6 pl-4 ">MY Events -  {loggedInUserName}</h1>
@@ -111,10 +115,12 @@ function App() {
                 myEvents.map((myevent) => (
                   <li
                     key={myevent._id}
-                    className="border-2 p-4 mp-3 rounded-lg flex items-center bg-blue-300"
+                    className="border-2 p-4 mp-3 rounded-lg flex items-center bg-blue-300 justify-center"
                   >
-                    <section className="h-10 w-10 bg-slate-100 rounded-md flex justify-center items-center mr-8">
-                      <UserIcon />
+                    <section className="h-40 w-40 rounded-md flex justify-center items-center mr-8">
+                      {userg ? <img className="h-40 w-40 " src={userg.userg.picture} alt="user image" />
+                      :<UserIcon />
+                     }
                     </section>
                     <section>
                       <h2 className="capitalize font-semibold mb-1">{myevent.event}</h2>
