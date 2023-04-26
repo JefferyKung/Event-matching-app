@@ -1,7 +1,7 @@
 import {Card, Tab, Tabs} from "@blueprintjs/core"
 import {useState} from 'react'
 
-import Login from "../pages/LoginPage"
+import Login from "../pages/Login"
 import Register from "../pages/Register"
 
 function Credentials() {

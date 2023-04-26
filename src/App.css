@@ -1,10 +1,11 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  /* max-width: 1280px; */
+  margin: 0;
+  /* padding: 0 10%; */
   text-align: center;
-  background-color: pink;
-  margin-top: 10%;
+  /* background-color: rgb(238, 241, 244); */
+  border-style: none;
+  /* margin-top: 10%; */
 
 }
 

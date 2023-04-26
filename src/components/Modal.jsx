@@ -3,13 +3,15 @@ import { BSON } from "realm-web";
 import CloseIcon from "../assets/svg/CloseIcon";
 import { app, user } from "../utils/mongo.client";
 
+
 const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUserName }) => {
   const [value, setValue] = useState({
     name: loggedInUserName,
     event:"",
     date:"",
     timeslot:"",
-    location: ""
+    location: "",
+    contact: ""
   });
 
   // 
@@ -38,7 +40,8 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
         event:"",
         date:"",
         timeslot:"",
-        location: ""});
+        location: "",
+        contact: ""});
       closeModal();
     } else {
       const create = user.functions.createEvent(
@@ -46,7 +49,8 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
         value.event,
         value.date,
         value.timeslot,
-        value.location
+        value.location,
+        value.contact
       );
       create.then((response) => {
         setUserValue(response.insertedId);
@@ -54,7 +58,8 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
           event:"",
           date:"",
           timeslot:"",
-          location: ""
+          location: "",
+          contact: ""
       });
         closeModal();
       });
@@ -64,7 +69,7 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
   useEffect(() => {
 
     // setValue({name:{loggedInUserName}})
-    console.log(loggedInUserName)
+    // console.log(loggedInUserName)
     if (isEdit) {
       //get data to edit 
       //在出來的modal上直接帶入原資料
@@ -84,10 +89,12 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
       event:"",
       date:"",
       timeslot:"",
-      location: ""});
+      location: "",
+      contact: ""});
     };
   }, [isEdit]);
 
+ 
   return (
     <div
       className={`h-screen w-screen bg-slate-900 bg-opacity-30 z-30 top-0 fixed transform scale-105 transition-all ease-in-out duration-100   ${
@@ -130,21 +137,32 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
              
               <fieldset className="mb-4">
                 <label className="block text-sm text-gray-500 capitalize mb-1">
-                  event in lowercase
+                  {"event "}
                 </label>
+
+                <input type="radio" id="html" name="event" value="majon" onChange={handleChange}/>
+                  <label for="majon">majon</label>
+                  <input type="radio" id="css" name="event" value="volleyball" className="ml-4" onChange={handleChange}/>
+                  <label for="volleyball">volleyball</label>
+                  <input type="radio" id="javascript" name="event" value="casino" className="ml-4" onChange={handleChange}/>
+                  <label for="casino">casino</label>
+                
                 <input
                   type="text"
                   name="event"
                   value={value.event}
+                  placeholder="click the option circle to get value"
                   onChange={handleChange}
                   required
                   className="w-full h-10 border border-gray-500 rounded-sm px-4"
                 />
               </fieldset>
+
               <fieldset className="mb-4">
                 <label className="block text-sm text-gray-500 capitalize mb-1">
                 date
                 </label>
+                
                 <input
                   type="date"
                   name="date"
@@ -154,15 +172,28 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
                   className="w-full h-10 border border-gray-500 rounded-sm px-4"
                 />
               </fieldset>
+
+             
+
+              
               <fieldset className="mb-4">
                 <label className="block text-sm text-gray-500 capitalize mb-1">
-                timeslot
+                {"timeslot "}
                 </label>
+
+                <input type="radio" id="css" name="timeslot" value="morning"  onChange={handleChange}/>
+                  <label for="morning">morning</label>
+                <input type="radio" id="html" name="timeslot" value="afternoon" onChange={handleChange} className="ml-4"/>
+                  <label for="afternoon">afternoon</label>
+                  
+                  <input type="radio" id="javascript" name="timeslot" value="evening" className="ml-4" onChange={handleChange}/>
+                  <label for="evening">evening</label>
                 <input
                   type="text"
                   name="timeslot"
                   value={value.timeslot}
                   onChange={handleChange}
+                  placeholder="click the option circle to get value"
                   required
                   className="w-full h-10 border border-gray-500 rounded-sm px-4"
                 />
@@ -180,11 +211,27 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
                   className="w-full h-10 border border-gray-500 rounded-sm px-4"
                 />
               </fieldset>
+
+              <fieldset className="mb-4">
+                <label className="block text-sm text-gray-500 capitalize mb-1">
+                  Contact Email
+                </label>
+                <input
+                  type="email"
+                  name="contact"
+                  value={value.contact}
+                  onChange={handleChange}
+                  required
+                  placeholder="please type in your email"
+                  className="w-full h-10 border border-gray-500 rounded-sm px-4"
+                />
+              </fieldset>         
               
               <button className="text-white capitalize px-6 py-2 bg-slate-900 rounded-md w-full">
                 save
               </button>
             </form>
+            
           </div>
         </section>
       </div>

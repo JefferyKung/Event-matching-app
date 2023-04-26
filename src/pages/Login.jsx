@@ -36,7 +36,7 @@ import { Button,FormGroup,InputGroup,Divider,Callout} from "@blueprintjs/core";
                 .then((res) => {
                     setProfile(res.data);
                     const userg = res.data
-                    console.log(userg)
+                    // console.log(userg)
                     navigate("/mainpanel",{state:{userg:{userg}}})
 
                 })
@@ -62,14 +62,15 @@ import { Button,FormGroup,InputGroup,Divider,Callout} from "@blueprintjs/core";
       setError("");
 
       const emailfoundData = await USER.functions.getfoundEmailData(email);
-      console.log(emailfoundData)
+      // console.log(emailfoundData)
 
       const passwordFoundData = await USER.functions.getfoundPasswordData(password);
-      console.log(passwordFoundData)
+      // console.log(passwordFoundData)
 
       emailfoundData !== null && passwordFoundData !== null ?
      
       (setUsername(emailfoundData.name),
+      // console.log(emailfoundData),
        navigate("/mainpanel",{state:{usern:{emailfoundData}}}) ):  
 
       (setError('wrong credential'),
@@ -88,64 +89,65 @@ import { Button,FormGroup,InputGroup,Divider,Callout} from "@blueprintjs/core";
 
     return (
       <>
-        {error && <Callout>{error}</Callout>}
-        <div className="text-5xl mb-5">Welcome to sign in! </div>
+        <section className="px-72 mt-20 bg-pink-200 py-14 rounded-lg">
+          {error && <Callout>{error}</Callout>}
+          <div className="text-5xl mb-5 ">Welcome to sign in! </div>
 
-        <form className="auth-form" onSubmit={formSubmitHandler}>
-          <FormGroup label="Email" labelFor="email">
-            <InputGroup
-              id="email"
-              placeholder="Enter your email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </FormGroup>
-          <FormGroup label="Password" labelFor="password">
-            <InputGroup
-              id="password"
-              placeholder="Enter your Password"
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              
-            />
-          </FormGroup>
-          <Button
-            type="submit"
-            text="Sign In"
-            intent="primary"
-            loading={isSubmitting}
-          />
-
-          <Divider />
-         
-          {/* <Link to="/forgot">Forgot Password?</Link> */}
-        </form>
-
-        <div>
-        {profile ? (
-                <div>
-                    <img src={profile.picture} alt="user image" />
-                    <h3>User Logged in</h3>
-                    <p>Name: {profile.name}</p>
-                    <p>Email Address: {profile.email}</p>
-                    <br />
-                    <br />
-                    <button onClick={logOut}>Log out</button>
-                </div>
-            ) : (
-              <Button
-            type="submit"
-            text="Sign In with Google 🚀 "
-            intent="warning"
-            onClick={() => login()}
-          
-          />
+          <form className="auth-form my-11" onSubmit={formSubmitHandler}>
+            <FormGroup label="Email" labelFor="email">
+              <InputGroup
+                id="email"
+                placeholder="Enter your email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </FormGroup>
+            <FormGroup label="Password" labelFor="password">
+              <InputGroup
+                id="password"
+                placeholder="Enter your Password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 
-            )}
-        </div>
-         
+              />
+            </FormGroup>
+            <Button
+              type="submit"
+              text="Sign In"
+              intent="primary"
+              loading={isSubmitting}
+            />
+
+            <Divider className="my-7"/>
+          
+            {/* <Link to="/forgot">Forgot Password?</Link> */}
+          </form>
+
+          <div>
+          {profile ? (
+                  <div>
+                      <img src={profile.picture} alt="user image" />
+                      <h3>User Logged in</h3>
+                      <p>Name: {profile.name}</p>
+                      <p>Email Address: {profile.email}</p>
+                      <br />
+                      <br />
+                      <button onClick={logOut}>Log out</button>
+                  </div>
+              ) : (
+                <Button
+              type="submit"
+              text="Sign In with Google 🚀 "
+              intent="warning"
+              onClick={() => login()}
+            
+            />
+                  
+              )}
+          </div>
+        </section>
       </>
     );
   }
