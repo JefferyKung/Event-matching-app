@@ -21,11 +21,14 @@ npm run dev
 
 # 4. How to Use the Project
 
--- updated V2 2023-02-23 --
-## new feature added -- google Oauth
+## -- updated V3 2023-04-26 --
+### adding (1) function of filtering by date/location. (2) get contact button.  
 
--- v1  2023-02-22 --
-## (1). Sign in
+## -- updated V2 2023-02-23 --
+### new feature added -- google Oauth
+
+## -- v1  2023-02-22 --
+### (1). Sign in
 login page with user authentication. I connect it to a Mongo database and store all the credencials. 
 If you successfully log in, you'll be redirect to the article page. If you don't, a JSON message will show you a error message.
 
