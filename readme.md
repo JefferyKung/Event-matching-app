@@ -14,9 +14,9 @@ Event matching app -- Jeffery's final project for NodeJS
 
 # 2. What technic do I use in this Project?
 
-* frontend library-> React.js
-* styling -> Tailwind CSS、 blueprintJS
-* backend and database -> MongoDB app service 
+### frontend library-> React.js
+### styling -> Tailwind CSS、 blueprintJS
+### backend and database -> MongoDB app service 
 
 
 # 3. How to Install and Run the Project
