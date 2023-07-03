@@ -43,9 +43,17 @@ const AllEvent = ({setEvents,searchLocation,setSearchLocation, events ,dateValue
 
       const handleDateFilterBtn = async ()=>{
         // console.log(dateValue)
-        const dateChoseByUser = formateDate(dateValue.toLocaleDateString())
+        let dateChoseByUser = formateDate(dateValue.toLocaleDateString())
     
         // console.log(dateChoseByUser)
+        // console.log(dateChoseByUser.length)
+
+        if (dateChoseByUser.length === 9) {
+          dateChoseByUser = dateChoseByUser.slice(0,8)+"0"+dateChoseByUser.slice(8)
+          // console.log(dateChoseByUser)
+        }
+
+
         const eventFilterdByDate = await user.functions.getEventbyFilteringDate(dateChoseByUser)
         setEvents(eventFilterdByDate)  
         // console.log(eventFilterdByDate)

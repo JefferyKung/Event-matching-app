@@ -130,7 +130,7 @@ const Modal = ({ isOpen, isEdit, closeModal, setUserValue, editingId,loggedInUse
                   value={value.name}
                   onChange={handleChange}
                   required
-                  disabled
+                  // disabled
                   className="w-full h-10 rounded-sm px-4 bg-gray-300 font-bold text-lg"
                 />
               </fieldset>

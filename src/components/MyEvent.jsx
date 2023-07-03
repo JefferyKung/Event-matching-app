@@ -23,7 +23,7 @@ const MyEvent = ({myEvents,setModal,setIsEdit,setEditingId,setUserValue}) => {
           myEvents.map((myevent) => (
             <li
               key={myevent._id}
-              className="border-2 p-4 mp-3 rounded-lg flex items-center bg-blue-200 justify-center w-1/2"
+              className="border-5 p-4 m-3 rounded-lg flex items-center bg-blue-200 justify-center "
             >
       
               <section>
